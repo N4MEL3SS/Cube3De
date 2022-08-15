@@ -50,16 +50,10 @@ void	player_set_fov(t_game *game, float fov, bool reset)
 
 int	game_loop(t_game *game)
 {
-	static clock_t	clock_cur;
-	static int		fps;
-
-	player_control(game);
+player_control(game);
 	ray_cast(game);
 	img_ceilfloor_fill_rgb(&game->img, game->color_ceil, game->color_floor);
 	draw_walls(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.ptr, 0, 0);
-	if (clock() != clock_cur)
-		fps = CLOCKS_PER_SEC / (clock() - clock_cur);
-	clock_cur = clock();
 	return (0);
 }
