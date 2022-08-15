@@ -77,6 +77,7 @@ clean:
 
 fclean: clean
 	@$(MAKE) fclean -C $(FT_DIR)
+	@$(MAKE) fclean -C $(MLX_DIR)
 	@rm -f $(NAME)
 	@echo "$(RED) $(NAME) was deleted. $(END)"
 
