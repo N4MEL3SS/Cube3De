@@ -54,8 +54,10 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ_LIST)
 	@echo "$(GREEN) libFT $(END)"
 	@$(MAKE) -C $(FT_DIR)
+	@echo ""
 	@echo "$(GREEN) libMLX $(END)"
 	@$(MAKE) -C $(MLX_DIR)
+	@echo ""
 	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJ_LIST) $(MLX_LINK) $(FT_LINK) -o $(NAME)
 	@echo "$(GREEN) $(NAME) created. $(END)"
 
@@ -67,11 +69,14 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $(INCLUDE) $< -o $@
 
 clean:
+	@$(MAKE) clean -C $(FT_DIR)
+	@$(MAKE) clean -C $(MLX_DIR)
 	@rm -rf $(OBJ_LIST)
 	@rm -rf $(OBJ_DIR_NAME)
 	@echo "$(RED) Object files were deleted. $(END)"
 
 fclean: clean
+	@$(MAKE) fclean -C $(FT_DIR)
 	@rm -f $(NAME)
 	@echo "$(RED) $(NAME) was deleted. $(END)"
 
