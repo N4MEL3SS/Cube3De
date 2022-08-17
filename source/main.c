@@ -50,7 +50,7 @@ void	player_set_fov(t_game *game, float fov, bool reset)
 
 int	game_loop(t_game *game)
 {
-player_control(game);
+	player_control(game);
 	ray_cast(game);
 	img_ceilfloor_fill_rgb(&game->img, game->color_ceil, game->color_floor);
 	draw_walls(game);
